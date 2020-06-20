@@ -1,0 +1,55 @@
+attribute_html:
+  火: <span class="fire">火</span>
+  水: <span class="water">水</span>
+  風: <span class="wind">風</span>
+  雷: <span class="thunder">雷</span>
+  光: <span class="light">光</span>
+  闇: <span class="darkness">闇</span>
+
+type_html:
+  Attack: <span class="attack">Attack</span>
+  Defense: <span class="defense">Defense</span>
+  Tricky: <span class="tricky">Tricky</span>
+  Balance: <span class="balance">Balance</span>
+  Healer: <span class="healer">Healer</span>
+  不明: 不明
+
+format_1: <tr><td class="kamihime-No">{No}</td><td class="kamihime-name">{神姫名}</td><td class="kamihime-attribute">{属性}</td><td class="kamihime-type">{タイプ}</td><td class="kamihime-status">{HP1}/{Attack1}</td><td class="kamihime-episode-name">{エピソ－ド1}</td><td class="kamihime-episode-contents">{内容1}</td></tr>
+
+format_1plus: <tr><td class="kamihime-No" rowspan="2">{No}</td><td class="kamihime-name">{神姫名}</td><td class="kamihime-attribute">{属性}</td><td class="kamihime-type">{タイプ}</td><td class="kamihime-status">{HP1}/{Attack1}</td><td class="kamihime-episode-name">{エピソ－ド1}</td><td class="kamihime-episode-contents">{内容1}</td></tr><tr><td class="kamihime-remarks" colspan="6">{備考}</td></tr>
+
+format_2: <tr><td class="kamihime-No" rowspan="2">{No}</td><td class="kamihime-name" rowspan="2">{神姫名}</td><td class="kamihime-attribute" rowspan="2">{属性}</td><td class="kamihime-type" rowspan="2">{タイプ}</td><td class="kamihime-status" rowspan="2">{HP1}/{Attack1}</td><td class="kamihime-episode-name">{エピソ－ド1}</td><td class="kamihime-episode-contents">{内容1}</td></tr><tr><td class="kamihime-episode-name">{エピソ－ド2}</td><td class="kamihime-episode-contents">{内容2}</td></tr>
+
+format_2plus: <tr><td class="kamihime-No" rowspan="3">{No}</td><td class="kamihime-name" rowspan="2">{神姫名}</td><td class="kamihime-attribute" rowspan="2">{属性}</td><td class="kamihime-type" rowspan="2">{タイプ}</td><td class="kamihime-status" rowspan="2">{HP1}/{Attack1}</td><td class="kamihime-episode-name">{エピソ－ド1}</td><td class="kamihime-episode-contents">{内容1}</td></tr><tr><td class="kamihime-episode-name">{エピソ－ド2}</td><td class="kamihime-episode-contents">{内容2}</td></tr><tr><td class="kamihime-remarks" colspan="6">{備考}</td></tr>
+
+format_3: <tr><td class="kamihime-No" rowspan="3">{No}</td><td class="kamihime-name" rowspan="2">{神姫名}</td><td class="kamihime-attribute" rowspan="3">{属性}</td><td class="kamihime-type" rowspan="3">{タイプ}</td><td class="kamihime-status" rowspan="2">{HP1}/{Attack1}</td><td class="kamihime-episode-name">{エピソ－ド1}</td><td class="kamihime-episode-contents">{内容1}</td></tr><tr><td class="kamihime-episode-name">{エピソ－ド2}</td><td class="kamihime-episode-contents">{内容2}</td></tr><tr><td class="kamihime-name">神化覚醒後</td><td class="kamihime-status">{HP2}/{Attack2}</td><td class="kamihime-episode-name">{エピソ－ド3}</td><td class="kamihime-episode-contents">{内容3}</td></tr>
+
+format_3plus: <tr><td class="kamihime-No" rowspan="4">{No}</td><td class="kamihime-name" rowspan="2">{神姫名}</td><td class="kamihime-attribute" rowspan="3">{属性}</td><td class="kamihime-type" rowspan="3">{タイプ}</td><td class="kamihime-status" rowspan="2">{HP1}/{Attack1}</td><td class="kamihime-episode-name">{エピソ－ド1}</td><td class="kamihime-episode-contents">{内容1}</td></tr><tr><td class="kamihime-episode-name">{エピソ－ド2}</td><td class="kamihime-episode-contents">{内容2}</td></tr><tr><td class="kamihime-name">神化覚醒後</td><td class="kamihime-status">{HP2}/{Attack2}</td><td class="kamihime-episode-name">{エピソ－ド3}</td><td class="kamihime-episode-contents">{内容3}</td></tr><tr><td class="kamihime-remarks" colspan="6">{備考}</td></tr>
+
+status:
+  ssr:
+    high_hp: 1700
+    low_hp: 1499
+    high_attack: 8500
+    low_attack: 6999
+
+  sr:
+    high_hp: 1300
+    low_hp: 999
+    high_attack: 7000
+    low_attack: 5999
+
+  r:
+    high_hp: 800
+    low_hp: 699
+    high_attack: 4500
+    low_attack: 3999
+
+  html:
+    higher:
+      start: <span class="higher">
+      close: </span>
+
+    lower:
+      start: <span class="lower">
+      close: </span>

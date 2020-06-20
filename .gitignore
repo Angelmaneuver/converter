@@ -1,0 +1,19 @@
+# ignore python library.
+venv
+
+# ignore pyinstaller compile directory.
+build
+
+# ignore temporary directory.
+temp
+
+# ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+# Pycharm manage files
+.idea
+
+# ignore os manage files
+.DS_Store
