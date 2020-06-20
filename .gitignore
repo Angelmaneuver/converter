@@ -4,7 +4,8 @@ venv
 # ignore pyinstaller compile directory.
 build
 
-# ignore temporary directory.
+# ignore cache or temporary directory.
+__pychache__
 temp
 
 # ignore log files and databases
