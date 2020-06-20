@@ -5,7 +5,7 @@ venv
 build
 
 # ignore cache or temporary directory.
-__pychache__
+*__pychache__*
 temp
 
 # ignore log files and databases
