@@ -1,5 +1,5 @@
 excel2csv:
-    - excel: C:/Users/angelmaneuver/PycharmProjects/converter/excel/神姫エピソ－ドメモ管理帳.xlsx
+    - excel: C:/Users/angelmaneuver/PycharmProjects/converter/temp/神姫エピソ－ドメモ管理帳.xlsx
       csv:
           - sheet: SSR神姫リスト→CSV出力用
           - sheet: 期間限定SSR神姫リスト→CSV出力用
