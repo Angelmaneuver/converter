@@ -76,10 +76,10 @@ def to_csv_test(conversions: list):
             if 'path' not in csv or csv['path'] is None:
                 csv['path'] = os.path.join(directory, sheet + '.csv')
                 conversions[i]['csv'][j] = csv
-            elif os.path.basename(csv['path']) == '':
+            elif os.path.isdir(csv['path']):
                 csv['path'] = os.path.join(csv['path'], sheet + '.csv')
                 conversions[i]['csv'][j] = csv
-            elif os.path.dirname(csv['path']) == '':
+            elif os.path.dirname(csv['path']) is None:
                 csv['path'] = os.path.join(directory, csv['path'])
                 conversions[i]['csv'][j] = csv
 

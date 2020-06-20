@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import time
-
 from converter.batch.controller.base import BatchControllerClass
 from converter.batch.base.abc import BatchClass
 from converter.util.yaml import read
