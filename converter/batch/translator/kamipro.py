@@ -44,10 +44,16 @@ class Csv2KaMiProTableListTranslatorClass(TranslatorClass):
         data['HP1'] = self.__get_status_html(data['HP1'], self.__hp.high, self.__hp.low)
         data['Attack1'] = self.__get_status_html(data['Attack1'], self.__attack.high, self.__attack.low)
 
-        if data['HTML設定先1'] is not None and data.get(data['HTML設定先1']) is not None:
+        if data['HTML設定先1'] is not None:
+            if data.get(data['HTML設定先1']) is None:
+                data[data['HTML設定先1']] = ''
+
             data[data['HTML設定先1']] += data['HTML1']
 
-        if data['HTML設定先2'] is not None and data.get(data['HTML設定先2']) is not None:
+        if data['HTML設定先2'] is not None:
+            if data.get(data['HTML設定先2']) is None:
+                data[data['HTML設定先2']] = ''
+
             data[data['HTML設定先2']] += data['HTML2']
 
         if '3' == data['エピソ－ド数']:
