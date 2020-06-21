@@ -23,7 +23,7 @@ class Csv2KaMiProTableListTranslatorClass(TranslatorClass):
 
         super().__init__(path.resource(__file__, 'config', 'kamipro.yaml'))
         self.__attack = ThresholdClass()
-        self.__hp = ThresholdClass
+        self.__hp = ThresholdClass()
 
     def execute(self, data, parameter):
         """
@@ -41,8 +41,8 @@ class Csv2KaMiProTableListTranslatorClass(TranslatorClass):
 
         data['属性'] = self.config['attribute_html'][data['属性']]
         data['タイプ'] = self.config['type_html'][data['タイプ']]
-        data['HP1'] = self.__get_status_html(data['HP1'], self.__hp.high, self.__hp.low)
-        data['Attack1'] = self.__get_status_html(data['Attack1'], self.__attack.high, self.__attack.low)
+        data['HP1'] = self.__get_status_html(data['HP1'], self.hp.high, self.hp.low)
+        data['Attack1'] = self.__get_status_html(data['Attack1'], self.attack.high, self.attack.low)
 
         if data['HTML設定先1'] is not None:
             if data.get(data['HTML設定先1']) is None:
@@ -57,8 +57,8 @@ class Csv2KaMiProTableListTranslatorClass(TranslatorClass):
             data[data['HTML設定先2']] += data['HTML2']
 
         if '3' == data['エピソ－ド数']:
-            data['HP2'] = self.__get_status_html(data['HP2'], self.__hp.high, self.__hp.low)
-            data['Attack2'] = self.__get_status_html(data['Attack2'], self.__attack.high, self.__attack.low)
+            data['HP2'] = self.__get_status_html(data['HP2'], self.hp.high, self.hp.low)
+            data['Attack2'] = self.__get_status_html(data['Attack2'], self.attack.high, self.attack.low)
             format_str = self.config['format_3plus'] if '備考' in data else self.config['format_3']
         elif '2' == data['エピソ－ド数']:
             format_str = self.config['format_2plus'] if '備考' in data else self.config['format_2']
@@ -117,8 +117,8 @@ class Csv2KaMiProTableListTranslatorClass(TranslatorClass):
 
     @attack.setter
     def attack(self, rarity):
-        self.__attack.high = self.config['status'][rarity]['high_attack']
-        self.__attack.low = self.config['status'][rarity]['low_attack']
+        self.__attack.high = int(self.config['status'][rarity]['high_attack'])
+        self.__attack.low = int(self.config['status'][rarity]['low_attack'])
 
     @property
     def hp(self):
@@ -126,8 +126,8 @@ class Csv2KaMiProTableListTranslatorClass(TranslatorClass):
 
     @hp.setter
     def hp(self, rarity):
-        self.__hp.high = self.config['status'][rarity]['high_hp']
-        self.__hp.low = self.config['status'][rarity]['low_hp']
+        self.__hp.high = int(self.config['status'][rarity]['high_hp'])
+        self.__hp.low = int(self.config['status'][rarity]['low_hp'])
 
 
 class ThresholdClass(object):
