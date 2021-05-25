@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 import sys
 import os
 
 
 def resource(path, *paths):
     """
-        Absorb differences in file paths between the Windows and Python executables method.
+        Absorb differences in file paths between the Python and Windows
+        executables.
 
         Args:
-            path :  The relative path of the calling file.
-            *paths : joined paths.
+            path:   The relative path of the calling file.
+            *paths: joined paths.
 
         Returns:
             path string.

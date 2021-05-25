@@ -1,20 +1,18 @@
-# ignore python library.
-venv
-
-# ignore pyinstaller compile directory.
-build
-
-# ignore cache or temporary directory.
+# ignore cache or temporary directory
 *__pycache__*
 temp
+venv
+build
+dist
 
 # ignore log files and databases
 *.log
 *.sql
 *.sqlite
 
-# Pycharm manage files
+# ignore IDE manage files
 .idea
+.vscode
 
 # ignore os manage files
 .DS_Store

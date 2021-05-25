@@ -1,0 +1,74 @@
+フォーマット:
+  Html:
+    Start: '<section class="profiles">'
+    Close: '</section>'
+    Index: '<h3>{0}</h3>'
+    Article:
+      Start: '<h4>{0}</h4><article>'
+      Close: '</article>'
+      Main:
+        Start: '<div>'
+        Ribbon1: '<div class="ribbon"><div class="ribbon_left"></div><div class="ribbon_right"></div></div>'
+        Ribbon2: '<div class="ribbon" style="--background: #ff4454;"><div class="ribbon_left"></div><div class="ribbon_right" style="--context: ''After Awaking'';"></div></div>'
+        ProfileStart: '<div class="row">'
+        CharacterDetailStart: '<div class="column">'
+        Icon1: '<div class="icon"><img src="{0}" loading="lazy"></div>'
+        Icon2: '<div class="icon" style="--align-items: center; --justify-content: center;"><span>No Data</span></div>'
+        PersonalStart: '<div class="personal row">'
+        Status: '<div class="column row-rebarse"><div class="status column"><div class="status_headline">属性</div><div>{0}</div><div class="status_headline">TYPE</div><div>{1}</div><div class="status_headline">HP</div><div>{2}</div><div class="status_headline">ATTACK</div><div>{3}</div></div><div class="sub_headline">Spec</div></div>'
+        Profile: '<div class="profile"><div class="headline">Profile</div><div><p>{0}</p></div></div>'
+        PersonalClose: '</div>'
+        CharacterDetailClose: '</div>'
+        EpisodeStart: '<div class="column"><div class="episodes row"><div class="episode"><div class="headline">Episode</div><div>'
+        Episode: '<div class="headline">{0}</div><div class="outline"><div class="column"><div class="sub_headline">{1}</div><div class="play"><div>{2}</div></div></div><div><p>{3}</p></div></div>'
+        EpisodeClose: '</div></div></div></div>'
+        ProfileClose: '</div>'
+        Close: '</div>'
+
+  タイプ:
+    Attack: '<span class="attack">Attack</span>'
+    Defense: '<span class="defense">Defense</span>'
+    Tricky: '<span class="tricky">Tricky</span>'
+    Balance: '<span class="balance">Balance</span>'
+    Healer: '<span class="healer">Healer</span>'
+    不明: '不明'
+
+  属性:
+    火: '<span class="fire">火</span>'
+    水: '<span class="water">水</span>'
+    風: '<span class="wind">風</span>'
+    雷: '<span class="thunder">雷</span>'
+    光: '<span class="light">光</span>'
+    闇: '<span class="darkness">闇</span>'
+
+閾値:
+  SSR:
+    HP:
+      High: 1700
+      Low: 1499
+    Attack:
+      High: 8500
+      Low: 6999
+
+  SR:
+    HP:
+      High: 1300
+      Low: 999
+    Attack:
+      High: 7000
+      Low: 5999
+
+  R:
+    HP:
+      High: 800
+      Low: 699
+    Attack:
+      High: 4500
+      Low: 3999
+
+  Html:
+    Higher: <span class="higher">{0}</span>
+    Lower: <span class="lower">{0}</span>
+
+アイコン:
+  ベースURL: '/kamipro/'
