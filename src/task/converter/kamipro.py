@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import math
+from typing import Optional
 
 import task.util.absorber as absorber
 import task.util.yaml as yaml
@@ -59,68 +60,23 @@ class KamiProConverterClass():
         if row is None or type(row.神姫名) is not str:
             return
 
-        episodes = int(row.エピソード数)
-        remain_episodes = episodes
+        episodes = remain_episodes = int(row.エピソード数)
+        profiles = math.floor(episodes / 2) + math.floor(episodes % 2) + 1
+        converted = []
 
-        temp = []
+        headline = self.__get_headline(row.ひらがな)
+        if headline is not None:
+            converted.append(headline)
 
-        if len(self.__headlines) > 0 and row.ひらがな[0] >= self.__headlines[0]:
-            syllabary = ''
-            last_index = 0
+        converted.append(self.formats['Start'].format(row.神姫名))
 
-            for i, v in enumerate(self.__headlines):
-                if row.ひらがな[0] >= v:
-                    syllabary = v
-                    last_index = i
-                else:
-                    break
-
-            temp.append(
-                self.config['フォーマット']['Html']['Index'].format(syllabary)
-            )
-            self.__headlines[0:last_index + 1] = []
-
-        temp.append(self.formats['Start'].format(row.神姫名))
-
-        for i in range(
-            1,
-            math.floor(episodes / 2) + math.floor(episodes % 2) + 1
-        ):
-            temp.extend(
-                [
-                    self.formats['Main']['Start'],
-                    self.formats['Main']['Ribbon' + str(i)],
-                    self.formats['Main']['ProfileStart'],
-                    self.formats['Main']['CharacterDetailStart'],
-                    (
-                        self.formats['Main']['Icon1'].format(
-                            self.icon_base_url +
-                            self.rarity +
-                            self.additionalRarity +
-                            f'{row.No:03}' +
-                            ('a' if i > 1 else '') +
-                            self.icon_extension
-                        )
-                    ) if (str.strip(
-                        getattr(row, 'エピソード' + str(1 if i == 1 else episodes))
-                    ) != '不明') else (
-                        self.formats['Main']['Icon2']
-                    ),
-                    self.formats['Main']['PersonalStart'],
-                    self.formats['Main']['Status'].format(
-                        self.config['フォーマット']['属性'][row.属性],
-                        self.config['フォーマット']['タイプ'][row.タイプ],
-                        self.hp.get_html(getattr(row, 'HP' + str(i))),
-                        self.attack.get_html(getattr(row, 'Attack' + str(i))),
-                    ),
-                    self.formats['Main']['Profile'].format(
-                        getattr(row, 'プロフィール' + str(i))
-                    ),
-                    self.formats['Main']['ProfileClose'],
-                    self.formats['Main']['CharacterDetailClose'],
-                    self.formats['Main']['EpisodeStart'],
-                ]
-            )
+        for i in range(1, profiles):
+            converted.extend([
+                self.formats['Main']['Start'],
+                self.formats['Main']['Ribbon' + str(i)],
+            ])
+            converted.extend(self.__get_personal(row, i, episodes))
+            converted.append(self.formats['Main']['EpisodeStart'])
 
             for j in range(
                 (math.floor(i / 2) * 2) + 1, (math.floor(i / 2) * 2) + 3
@@ -128,17 +84,11 @@ class KamiProConverterClass():
                 if remain_episodes <= 0:
                     continue
 
-                temp.append(
-                    self.formats['Main']['Episode'].format(
-                        getattr(row, 'エピソード' + str(j)),
-                        getattr(row, 'タグ' + str(j)),
-                        getattr(row, '内容' + str(j)),
-                        getattr(row, 'あらすじ' + str(j)),
-                    )
-                )
+                converted.append(self.__get_episode(row, j))
+
                 remain_episodes -= 1
 
-            temp.extend(
+            converted.extend(
                 [
                     self.formats['Main']['EpisodeClose'],
                     self.formats['Main']['ProfileClose'],
@@ -146,9 +96,9 @@ class KamiProConverterClass():
                 ]
             )
 
-        temp.append(self.formats['Close'])
+        converted.append(self.formats['Close'])
 
-        self.__html.append(''.join(temp))
+        self.__html.append(''.join(converted))
 
     def get_result(self) -> str:
         """
@@ -164,6 +114,69 @@ class KamiProConverterClass():
             self.config['フォーマット']['Html']['Start'] +
             ''.join(self.__html) +
             self.config['フォーマット']['Html']['Close']
+        )
+
+    def __get_headline(self, hiragana: str) -> Optional[str]:
+        result: Optional[str] = None
+
+        if len(self.__headlines) > 0 and hiragana[0] >= self.__headlines[0]:
+            syllabary = ''
+            last_index = 0
+
+            for i, v in enumerate(self.__headlines):
+                if hiragana[0] >= v:
+                    syllabary = v
+                    last_index = i
+                else:
+                    break
+
+            result = self.config['フォーマット']['Html']['Index'].format(syllabary)
+            self.__headlines[0:last_index + 1] = []
+
+        return result
+
+    def __get_personal(
+        self, row, count: int, episodes: int
+    ) -> list[str]:
+        episode_text = getattr(
+            row,
+            'エピソード' + str(1 if count == 1 else episodes)
+        )
+
+        icon_url = (
+            self.icon_base_url + self.rarity + self.additionalRarity +
+            f'{row.No:03}' + ('a' if count > 1 else '') +
+            self.icon_extension
+        )
+
+        return [
+            self.formats['Main']['ProfileStart'],
+            self.formats['Main']['CharacterDetailStart'],
+            (
+                self.formats['Main']['Icon1'].format(icon_url)
+                if episode_text != '不明' else
+                self.formats['Main']['Icon2']
+            ),
+            self.formats['Main']['PersonalStart'],
+            self.formats['Main']['Status'].format(
+                self.config['フォーマット']['属性'][row.属性],
+                self.config['フォーマット']['タイプ'][row.タイプ],
+                self.hp.get_html(getattr(row, 'HP' + str(count))),
+                self.attack.get_html(getattr(row, 'Attack' + str(count))),
+            ),
+            self.formats['Main']['Profile'].format(
+                getattr(row, 'プロフィール' + str(count))
+            ),
+            self.formats['Main']['PersonalClose'],
+            self.formats['Main']['CharacterDetailClose'],
+        ]
+
+    def __get_episode(self, row, count: int) -> str:
+        return self.formats['Main']['Episode'].format(
+            getattr(row, 'エピソード' + str(count)),
+            getattr(row, 'タグ' + str(count)),
+            getattr(row, '内容' + str(count)),
+            getattr(row, 'あらすじ' + str(count)),
         )
 
     @property

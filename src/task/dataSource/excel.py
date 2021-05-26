@@ -66,7 +66,7 @@ class ExcelDataSourceClass(FileDataSourceBaseClass):
                 None
 
             Returns:
-                namedtuple (key: column header, value: column)
+                NamedTuple (key: column header, value: column)
         """
         dataframe = pandas.read_excel(
             io=self._io,
