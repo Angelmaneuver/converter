@@ -6,7 +6,7 @@ inputs:
         additionalRarity: 'additionalRarity1'
         convertedName   : 'convertedName1'
       - sheet           : 'sheet2'
-        rarity          : 'rarity2'
+        rarity          : 'rarity3'
         additionalRarity: 'additionalRarity2'
         convertedName   : 'convertedName2'
 output:
