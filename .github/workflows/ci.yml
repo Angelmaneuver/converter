@@ -18,6 +18,6 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - run: pip install pipenv
-    - run: pipevn --python ${{ matrix.python-version }}
+    - run: pipenv --python ${{ matrix.python-version }}
     - run: pipenv install --dev
     - run: python ${{github.workspace}}/test/runTest.py
