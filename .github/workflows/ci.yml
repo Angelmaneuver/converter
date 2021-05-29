@@ -36,10 +36,10 @@ jobs:
     - run: pipenv --python 3.9
     - run: pipenv install --dev
     - run: pipenv run coverage run --branch --source=src test/runTest.py
-    - run: pipenv run coverage xml
+    - run: pipenv run coverage report
     - uses: paambaati/codeclimate-action@v2.7.5
       env:
         CC_TEST_REPORTER_ID: c11d4780357bedb6b295c2b87779718a786bc58b0a58c4b903df974502bc7980
       with:
+        coverageCommand: pipenv run coverage xml
         coverageLocations: ${{github.workspace}}/coverage.xml
-    - run: pipenv run coverage report
