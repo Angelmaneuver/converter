@@ -21,6 +21,7 @@
 		"recommendations": [
 			"mosapride.zenkaku",
 			"christian-kohler.path-intellisense",
+			"ryanluker.vscode-coverage-gutters",
 			"ms-python.python",
 			"magicstack.magicpython",
 			"njpwerner.autodocstring"
