@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from typing import Union
+from pathlib import Path
+
 import yaml
 
 
-def read(path: str, encoding='utf-8'):
+def read(path: Union[str, Path], encoding='utf-8'):
     """
         Yaml read method.
 

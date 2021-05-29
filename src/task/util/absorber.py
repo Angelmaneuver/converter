@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import sys
-import os
+import pathlib
 
 
 def resource(path, *paths):
@@ -18,7 +18,10 @@ def resource(path, *paths):
     """
 
     if getattr(sys, 'frozen', False):
-        return os.path.join(sys._MEIPASS, *paths)
+        return pathlib.Path(sys._MEIPASS).joinpath(*paths).resolve()
 
     else:
-        return os.path.join(os.path.abspath(os.path.dirname(path)), *paths)
+        path = pathlib.Path(path)
+        base = path.resolve().parent if path.is_file() else path
+
+        return pathlib.Path(base).joinpath(*paths).resolve()
