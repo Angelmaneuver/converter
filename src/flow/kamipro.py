@@ -5,7 +5,7 @@ from typing import NamedTuple, Tuple, Any
 from prefect import Flow, task
 
 import task.util.absorber as absorber
-import task.util.yaml as yaml
+import task.util.yml as yml
 from task.dataSource.excel import ExcelDataSourceClass
 from task.converter.kamipro import KamiProConverterClass
 
@@ -61,7 +61,7 @@ def output(parameter: Tuple[str, Condition]):
 
 def execute():
     with Flow("神姫プロジェクトエピソ－ドメモ変換") as flow:
-        config = yaml.read(
+        config = yml.read(
             absorber.resource(__file__, 'config', 'kamipro.yml')
         )
         definition = Definition(
@@ -72,7 +72,7 @@ def execute():
             ascending=config['ascending']
         )
 
-        config = yaml.read(pathlib.Path().joinpath('config', 'kamipro.yml'))
+        config = yml.read(pathlib.Path().joinpath('config', 'kamipro.yml'))
         baseDestination = pathlib.Path(config['output']['destination'])
         prefix = config['output']['prefix']
         suffix = config['output']['suffix']

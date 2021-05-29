@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import math
-from typing import Optional
+from typing import List, Optional
 
 import task.util.absorber as absorber
-import task.util.yaml as yaml
+import task.util.yml as yml
 
 
 class KamiProConverterClass():
@@ -23,7 +23,7 @@ class KamiProConverterClass():
             Returns:
                 None
         """
-        self.__config = yaml.read(
+        self.__config = yml.read(
             absorber.resource(__file__, 'config', 'kamipro.yml')
         )
 
@@ -45,7 +45,7 @@ class KamiProConverterClass():
             higher_format=self.config['閾値']['Html']['Higher'],
             lower_format=self.config['閾値']['Html']['Lower'],
         )
-        self.__html: list[str] = []
+        self.__html: List[str] = []
 
     def convert(self, row):
         """
@@ -137,7 +137,7 @@ class KamiProConverterClass():
 
     def __get_personal(
         self, row, count: int, episodes: int
-    ) -> list[str]:
+    ) -> List[str]:
         episode_text = getattr(
             row,
             'エピソード' + str(1 if count == 1 else episodes)

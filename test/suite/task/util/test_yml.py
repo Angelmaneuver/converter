@@ -6,7 +6,7 @@ import pathlib
 import sys
 sys.path.append(str((pathlib.Path(__file__).resolve().parent.parent.parent.parent.parent).resolve()))
 
-from src.task.util import yaml as testTarget
+from src.task.util import yml as testTarget
 
 
 class TestYaml(unittest.TestCase):
