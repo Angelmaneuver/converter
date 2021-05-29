@@ -7,7 +7,7 @@ jobs:
   test:
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
         python-version: [3.9]
     runs-on: ${{ matrix.os }}
     steps:
@@ -17,11 +17,7 @@ jobs:
       uses: actions/setup-python@master
       with:
         python-version: ${{ matrix.python-version }}
-    - run: cd ${{github.workspace}}
     - run: pip install pipenv
     - run: pipenv --python ${{ matrix.python-version }}
     - run: pipenv install --dev
     - run: pipenv run python3 test/runTest.py
-      if: runner.os != 'Windows'
-    - run: pipenv run python3 test\runTest.py
-      if: runner.os == 'Windows'
