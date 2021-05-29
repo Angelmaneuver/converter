@@ -1,0 +1,16 @@
+inputs:
+  - path: 'path1'
+    conditions:
+      - sheet           : 'sheet1'
+        rarity          : 'rarity1'
+        additionalRarity: 'additionalRarity1'
+        convertedName   : 'convertedName1'
+      - sheet           : 'sheet2'
+        rarity          : 'rarity2'
+        additionalRarity: 'additionalRarity2'
+        convertedName   : 'convertedName2'
+output:
+  destination: 'destination1'
+  prefix:      'prefix1'
+  suffix:      'suffix1'
+  extension:   'extension1'

@@ -13,6 +13,7 @@ prefect = "*"
 autopep8 = "*"
 flake8 = "*"
 mypy = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.9"
