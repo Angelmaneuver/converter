@@ -3,8 +3,8 @@
 import math
 from typing import List, Optional
 
-import task.util.absorber as absorber
-import task.util.yml as yml
+from .util import absorber as absorber
+from .util import yml as yml
 
 
 class KamiProConverterClass():

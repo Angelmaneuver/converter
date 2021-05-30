@@ -7,7 +7,7 @@ from prefect import Flow, task
 import task.util.absorber as absorber
 import task.util.yml as yml
 from task.dataSource.excel import ExcelDataSourceClass
-from task.converter.kamipro import KamiProConverterClass
+from task.kamipro import KamiProConverterClass
 
 
 class Definition(NamedTuple):
