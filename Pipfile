@@ -17,3 +17,6 @@ coverage = "*"
 
 [requires]
 python_version = "3.9"
+
+[scripts]
+coverage = "coverage run --branch --source=src test/runTest.py"
