@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import pathlib
-from typing import NamedTuple, Tuple, Any
+from typing import List, NamedTuple, Tuple, Any
 from prefect import Flow, task
 
 import task.util.absorber as absorber
@@ -23,7 +23,7 @@ class Condition(NamedTuple):
     sheet:            str
     rarity:           str
     additionalRarity: str
-    output:           str
+    output:           pathlib.Path
 
 
 @task(name='Convert')
@@ -59,45 +59,42 @@ def output(parameter: Tuple[str, Condition]):
         fw.write(converted)
 
 
-def main():
-    with Flow("神姫プロジェクトエピソ－ドメモ変換") as flow:
-        config = yml.read(
-            absorber.resource(__file__, 'config', 'kamipro.yml')
+with Flow("神姫プロジェクトエピソ－ドメモ変換") as flow:
+    config = yml.read(
+        absorber.resource(__file__, 'config', 'kamipro.yml')
+    )
+    definition = Definition(
+        header=config['header'],
+        names=config['names'],
+        skipRows=config['skipRows'],
+        sortBy=config['sortBy'],
+        ascending=config['ascending']
+    )
+
+    config = yml.read(pathlib.Path().joinpath('config', 'kamipro.yml'))
+    baseDestination = pathlib.Path(config['output']['destination'])
+    prefix = config['output']['prefix']
+    suffix = config['output']['suffix']
+    extension = '.' + config['output']['extension']
+    parameter: List[Tuple[Definition, Condition]] = list()
+    for input in config['inputs']:
+        parameter.extend(
+            list(map(lambda condition: (definition, Condition(
+                path=input['path'],
+                sheet=condition['sheet'],
+                rarity=condition['rarity'],
+                additionalRarity=condition['additionalRarity'],
+                output=baseDestination.joinpath(
+                    prefix + condition['convertedName'] + suffix +
+                    extension
+                )
+
+            )), input['conditions']))
         )
-        definition = Definition(
-            header=config['header'],
-            names=config['names'],
-            skipRows=config['skipRows'],
-            sortBy=config['sortBy'],
-            ascending=config['ascending']
-        )
 
-        config = yml.read(pathlib.Path().joinpath('config', 'kamipro.yml'))
-        baseDestination = pathlib.Path(config['output']['destination'])
-        prefix = config['output']['prefix']
-        suffix = config['output']['suffix']
-        extension = '.' + config['output']['extension']
-        parameter: list[Tuple[Definition, Condition]] = list()
-        for input in config['inputs']:
-            parameter.extend(
-                list(map(lambda condition: (definition, Condition(
-                    path=input['path'],
-                    sheet=condition['sheet'],
-                    rarity=condition['rarity'],
-                    additionalRarity=condition['additionalRarity'],
-                    output=baseDestination.joinpath(
-                        prefix + condition['convertedName'] + suffix +
-                        extension
-                    )
-
-                )), input['conditions']))
-            )
-
-        converted = convert.map(parameter)
-        output.map(converted)
-
-    flow.run()
+    converted = convert.map(parameter)
+    output.map(converted)
 
 
 if __name__ == '__main__':
-    main()
+    flow.run()
