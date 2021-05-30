@@ -7,7 +7,7 @@ import pathlib
 from collections import namedtuple
 
 import sys
-sys.path.append(str((pathlib.Path(__file__).resolve().parent.parent.parent.parent.parent).resolve()))
+sys.path.append(str((pathlib.Path(__file__).resolve().parent.parent.parent.parent).resolve()))
 
 from src.task.dataSource.excel import ExcelDataSourceClass as testTarget
 
