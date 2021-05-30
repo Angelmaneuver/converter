@@ -32,7 +32,6 @@ class FileDataSourceBaseClass(AbstractDataSourceBaseClass):
             Returns:
                 None
         """
-        pass
 
     @property
     def io(self):

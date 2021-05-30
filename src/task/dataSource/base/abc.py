@@ -19,4 +19,3 @@ class AbstractDataSourceBaseClass(metaclass=ABCMeta):
             Returns:
                 None
         """
-        pass
