@@ -36,7 +36,8 @@
 			"ryanluker.vscode-coverage-gutters",
 			"ms-python.python",
 			"magicstack.magicpython",
-			"njpwerner.autodocstring"
+			"njpwerner.autodocstring",
+			"cschleiden.vscode-github-actions",
 		]
 	}
 }

@@ -1,0 +1,13 @@
+conditions:
+  loseless: True
+  quality: 80
+  targetExtensions:
+    - 'jpg'
+    - 'jpeg'
+    - 'png'
+input:
+  path: 'temp'
+  recursive: False
+output:
+  path: 'temp'
+  extension: 'webp'

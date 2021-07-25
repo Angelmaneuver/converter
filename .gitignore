@@ -147,3 +147,6 @@ build
 
 # ignore os manage files
 .DS_Store
+
+# ignore test result files
+test/task/util/image/convert_target.webp
