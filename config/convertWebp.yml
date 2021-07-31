@@ -8,6 +8,8 @@ conditions:
 input:
   path: 'temp'
   recursive: False
+  replace: False
+  delete: False
 output:
   path: 'temp'
   extension: 'webp'

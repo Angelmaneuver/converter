@@ -17,9 +17,10 @@ class Definition(NamedTuple):
 class Condition(NamedTuple):
     src: pathlib.Path
     dst: pathlib.Path
+    delete: bool
 
 
-@task(name='Convert', log_stdout=True)
+@task(name='Convert')
 def convert(parameter: Tuple[Definition, Condition]) -> None:
     definition, condition = parameter
 
@@ -29,6 +30,9 @@ def convert(parameter: Tuple[Definition, Condition]) -> None:
         lossless=definition.loseless,
         quality=definition.quality
     )
+
+    if condition.delete:
+        condition.src.unlink()
 
 
 with Flow("画像ファイル変換 - Webp") as flow:
@@ -45,6 +49,9 @@ with Flow("画像ファイル変換 - Webp") as flow:
 
     baseSource = pathlib.Path(config['input']['path'])
     recursive = config['input']['recursive']
+    replace = config['input']['replace']
+    delete = True if config['input']['delete'] or replace else False
+    extension = config['output']['extension']
     sources = [
         target for target in baseSource.glob(
             '**/*' if recursive else '*'
@@ -61,11 +68,16 @@ with Flow("画像ファイル変換 - Webp") as flow:
                 definition,
                 Condition(
                     src=source,
-                    dst=baseDestination.joinpath(
-                        pathlib.Path(source).stem +
-                        '.' +
-                        config['output']['extension']
-                    )
+                    dst=(
+                        source.with_suffix('.' + extension)
+                        if replace else
+                        baseDestination.joinpath(
+                            pathlib.Path(source).stem +
+                            '.' +
+                            config['output']['extension']
+                        )
+                    ),
+                    delete=delete
                 )
             ))
 
