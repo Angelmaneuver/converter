@@ -1,0 +1,13 @@
+conditions:
+  targetExtensions:
+    - 'ts'
+  output:
+    - format: 'm2v'
+      copy: True
+    - format: 'wav'
+      copy: False
+input:
+  path: 'temp'
+  recursive: False
+output:
+  path: 'temp'

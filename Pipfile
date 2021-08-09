@@ -9,6 +9,7 @@ pyyaml = "*"
 openpyxl = "*"
 prefect = "*"
 pillow = "*"
+ffmpeg-python = "*"
 
 [dev-packages]
 autopep8 = "*"
