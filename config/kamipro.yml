@@ -33,6 +33,10 @@ inputs:
         rarity          : 'R'
         additionalRarity: 'Limited'
         convertedName   : '期間限定R'
+      - sheet           : 'スキンリスト'
+        rarity          : 'Skin'
+        additionalRarity: ''
+        convertedName   : 'スキン'
 output:
   destination: 'temp'
   prefix:      ''

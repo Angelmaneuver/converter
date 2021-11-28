@@ -32,6 +32,7 @@
     Balance: '<span class="balance">Balance</span>'
     Healer: '<span class="healer">Healer</span>'
     不明: '不明'
+    -: '-'
 
   属性:
     火: '<span class="fire">火</span>'
@@ -40,6 +41,7 @@
     雷: '<span class="thunder">雷</span>'
     光: '<span class="light">光</span>'
     闇: '<span class="darkness">闇</span>'
+    -: '-'
 
 閾値:
   SSR:
@@ -65,6 +67,14 @@
     Attack:
       High: 4500
       Low: 3999
+
+  Skin:
+    HP:
+      High: 0
+      Low: 0
+    Attack:
+      High: 0
+      Low: 0
 
   Html:
     Higher: <span class="higher">{0}</span>
