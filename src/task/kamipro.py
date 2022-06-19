@@ -153,9 +153,9 @@ class KamiProConverterClass():
             self.formats['Main']['ProfileStart'],
             self.formats['Main']['CharacterDetailStart'],
             (
-                self.formats['Main']['Icon1'].format(icon_url)
-                if episode_text != '不明' else
                 self.formats['Main']['Icon2']
+                if episode_text == '不明' and count > 1 else
+                self.formats['Main']['Icon1'].format(icon_url)
             ),
             self.formats['Main']['PersonalStart'],
             self.formats['Main']['Status'].format(
